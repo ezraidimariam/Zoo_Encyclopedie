@@ -1,5 +1,6 @@
-CREATE DATABASE zoo_encycloedie;
-USE zoo_encycloedie;
+
+CREATE DATABASE zooency;
+
 
 CREATE TABLE habitats (
     IdHab INT AUTO_INCREMENT PRIMARY KEY,
@@ -9,40 +10,29 @@ CREATE TABLE habitats (
 
 
 CREATE TABLE animals (
-    IdAnimal INT AUTO_INCREMENT PRIMARY KEY,
-    NomAnimal VARCHAR(50) NOT NULL,
-    Type_alimentaire ENUM('Carnivore','Herbivore','Omnivore') NOT NULL,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nom VARCHAR(50) NOT NULL,
+    Type_alimentaire ENUM('Carnivore', 'Herbivore', 'Omnivore') NOT NULL,
     Image VARCHAR(255),
     IdHab INT,
     FOREIGN KEY (IdHab) REFERENCES habitats(IdHab) ON DELETE SET NULL
 );
 
+
 INSERT INTO habitats (NomHab, Description_Hab)
-VALUES 
-('Savane', 'Grandes plaines avec herbes et quelques arbres.'),
-('Jungle', 'Forêt dense avec beaucoup de végétation.'),
-('Désert', 'Région aride avec peu de végétation.'),
-('Océan', 'Vaste étendue d’eau salée.');
+VALUES
+('Savane', 'Habitat avec herbes hautes et quelques arbres'),
+('Jungle', 'Forêt dense avec beaucoup de végétation et animaux'),
+('Désert', 'Région aride avec peu d’eau'),
+('Océan', 'Grande étendue d’eau salée avec faune marine');
 
 
-INSERT INTO animals (NomAnimal, Type_alimentaire, Image, IdHab)
+INSERT INTO animals (Nom, Type_alimentaire, Image, IdHab)
 VALUES
 ('Lion', 'Carnivore', 'lion.jpg', 1),
 ('Éléphant', 'Herbivore', 'elephant.jpg', 1),
-('Crocodile', 'Carnivore', 'crocodile.jpg', 4),
-('Perroquet', 'Omnivore', 'perroquet.jpg', 2);
-
-UPDATE animals
-SET NomAnimal = 'Lion',
-    Type_alimentaire = 'Carnivore',
-    Image = 'nouvelle_image.jpg',
-    IdHab = 2
-WHERE IdAnimal = 1;
+('Singe', 'Omnivore', 'singe.jpg', 2),
+('Requin', 'Carnivore', 'requin.jpg', 4),
+('Chameau', 'Herbivore', 'chameau.jpg', 3);
 
 
-
-DELETE FROM animals
-WHERE IdAnimal = 3;
-
-
-SELECT * FROM animals;
