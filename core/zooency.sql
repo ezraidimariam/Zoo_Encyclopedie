@@ -35,6 +35,8 @@ VALUES
 ('Requin', 'Carnivore', 'requin.jpg', 4),
 ('Chameau', 'Herbivore', 'chameau.jpg', 3);
 
+CREATE INDEX idx_type_alimentaire ON animals(Type_alimentaire);
+CREATE INDEX idx_idhab ON animals(IdHab);
 
 -- Afficher tous les animaux avec habitat
 SELECT a.ID, a.Nom, a.Type_alimentaire, a.Image, h.NomHab
