@@ -31,20 +31,29 @@ Le projet est réalisé avec PHP procédural, MySQL, et respecte les bonnes prat
 
 📂 Structure du projet
 ```
-/config
-    db.php          → connexion à la base de données
-/animals
-    list.php        → afficher tous les animaux
-    add.php         → ajouter un animal
-    edit.php        → modifier un animal
-    delete.php      → supprimer un animal
-/habitats
-    list.php        → afficher tous les habitats
-    add.php         → ajouter un habitat
-    edit.php        → modifier un habitat
-    delete.php      → supprimer un habitat
-/assets
-    images/         → images des animaux
+zoo_encyclopedie/
+│── index.php
+│── db.php
+│── encyzoo.sql
+│
+├── animals/          ← CRUD dyal animals
+│     ├── add.php
+│     ├── edit.php
+│     ├── delete.php
+│
+├── habitats/         ← CRUD dyal habitats
+│     ├── add.php
+│     ├── edit.php
+│     ├── delete.php
+│
+├── includes/
+│     ├── header.php
+│     └── footer.php
+│
+└── assets/
+      ├── css/
+      ├── img/
+      └── js/
 README.md
 ```
 🔧 Fonctionnalités
