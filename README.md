@@ -80,7 +80,7 @@ Index ajoutés pour optimiser les recherches : Type_alimentaire, IdHab
 
 Cloner le projet :
 
-git clone https://github.com/ton-utilisateur/zooency.git
+git clone https://github.com/ezraidimariam/Zoo_Encyclopedie.git
 
 
 Créer la base de données MySQL et exécuter le script SQL fourni (zooency.sql).
