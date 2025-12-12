@@ -36,3 +36,63 @@ VALUES
 ('Chameau', 'Herbivore', 'chameau.jpg', 3);
 
 
+-- Afficher tous les animaux avec habitat
+SELECT a.ID, a.Nom, a.Type_alimentaire, a.Image, h.NomHab
+FROM animals a
+LEFT JOIN habitats h ON a.IdHab = h.IdHab;
+ 
+
+
+-- Modifier le type alimentaire d'un animal
+UPDATE animals
+SET Type_alimentaire = 'Omnivore'
+WHERE Nom = 'Éléphant';
+
+
+
+-- Modifier l'habitat d'un animal
+UPDATE animals
+SET IdHab = 2
+WHERE Nom = 'Chameau';
+
+-- Modifier un habitat
+UPDATE habitats
+SET Description_Hab = 'Nouvelle description'
+WHERE NomHab = 'Savane';
+    
+
+-- Supprimer un animal
+DELETE FROM animals
+WHERE Nom = 'Singe';
+
+
+
+-- Supprimer un habitat
+DELETE FROM habitats
+WHERE NomHab = 'Désert';
+
+-- Tous les carnivores
+SELECT * FROM animals
+WHERE Type_alimentaire = 'Carnivore';
+
+-- Tous les animaux d'une habitat spécifique
+SELECT a.Nom, h.NomHab
+FROM animals a
+JOIN habitats h ON a.IdHab = h.IdHab
+WHERE h.NomHab = 'Savane';
+
+
+-- Nombre d'animaux par type alimentaire
+SELECT Type_alimentaire, COUNT(*) AS total
+FROM animals
+GROUP BY Type_alimentaire;
+
+-- Nombre d'animaux par habitat
+SELECT h.NomHab, COUNT(a.ID) AS total
+FROM habitats h
+LEFT JOIN animals a ON a.IdHab = h.IdHab
+GROUP BY h.NomHab;
+
+
+
+
