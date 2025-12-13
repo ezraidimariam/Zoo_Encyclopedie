@@ -1,14 +1,11 @@
 <?php
 include("../config/db.php");
 
-// Fetch habitats for filter dropdown
 $habitats = mysqli_query($conn, "SELECT * FROM habitats");
 
-// Handle filters
 $filterHabitat = isset($_GET['habitat']) ? $_GET['habitat'] : '';
 $filterType = isset($_GET['type']) ? $_GET['type'] : '';
 
-// Build query dynamically
 $sql = "SELECT animals.ID, animals.Nom, animals.Type_alimentaire, animals.Image, habitats.NomHab
         FROM animals
         LEFT JOIN habitats ON animals.IdHab = habitats.IdHab
@@ -77,7 +74,6 @@ $animals = mysqli_query($conn, $sql);
 </head>
 <body>
 
-<!-- Home Button -->
 <div class="text-end p-2">
     <a href="../index.php" class="home-btn">🏠 Home</a>
 </div>
