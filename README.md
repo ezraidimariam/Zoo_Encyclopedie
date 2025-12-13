@@ -31,6 +31,7 @@ Le projet est réalisé avec PHP procédural, MySQL, et respecte les bonnes prat
 
 📂 Structure du projet
 Zoo_Encyclopedie/
+```
 │
 ├── config/
 │   └── db.php
@@ -84,9 +85,3 @@ Configurer la connexion à la base dans /config/db.php.
 Placer le projet dans un serveur local (XAMPP, WAMP, MAMP, etc.).
 
 Accéder au site via http://localhost/zooency.
-
-📄 Auteur
-
-Mariam Ezraidi
-
-Développeuse Web & Web Mobile
