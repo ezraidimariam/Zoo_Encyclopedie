@@ -54,7 +54,7 @@ if(isset($_POST['update'])){
             </div>
             <input type="file" name="image" class="form-control mb-3">
             <button name="update" class="btn btn-warning w-100">Mettre à jour</button>
-            <a href="list.php" class="btn btn-secondary w-100 mt-2">Retour à la liste</a>
+            <a href="list.php" class="btn btn-secondary w-100 mt-2">Retour à la liste.</a>
         </form>
     </div>
 </div>
