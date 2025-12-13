@@ -78,10 +78,10 @@ Cloner le projet :
 git clone https://github.com/ezraidimariam/Zoo_Encyclopedie.git
 
 
-Créer la base de données MySQL et exécuter le script SQL fourni (zooency.sql).
+Créer la base de données MySQL et exécuter le script SQL fourni (zoo_ency.sql).
 
 Configurer la connexion à la base dans /config/db.php.
 
 Placer le projet dans un serveur local (XAMPP, WAMP, MAMP, etc.).
 
-Accéder au site via http://localhost/zooency.
+Accéder au site via http://localhost/zoo_ency.
