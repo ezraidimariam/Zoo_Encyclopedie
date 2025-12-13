@@ -30,31 +30,25 @@ Le projet est réalisé avec PHP procédural, MySQL, et respecte les bonnes prat
 -UI/UX : Ergonomie et accessibilité
 
 📂 Structure du projet
-```
-zoo_encyclopedie/
-│── index.php
-│── db.php
-│── encyzoo.sql
+Zoo_Encyclopedie/
 │
-├── animals/          ← CRUD dyal animals
-│     ├── add.php
-│     ├── edit.php
-│     ├── delete.php
+├── config/
+│   └── db.php
 │
-├── habitats/         ← CRUD dyal habitats
-│     ├── add.php
-│     ├── edit.php
-│     ├── delete.php
+├── animals/
+│   ├── add.php
+│   ├── list.php
+│   ├── delete.php
 │
-├── includes/
-│     ├── header.php
-│     └── footer.php
+├── habitats/
+│   ├── add.php
+│   ├── list.php
 │
-└── assets/
-      ├── css/
-      ├── img/
-      └── js/
-README.md
+├── uploads/
+│
+├── index.php
+└── style.css
+
 ```
 🔧 Fonctionnalités
 
