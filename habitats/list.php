@@ -31,7 +31,6 @@ $habitats = mysqli_query($conn, "SELECT * FROM habitats ORDER BY IdHab DESC");
 </head>
 <body>
 
-<!-- Small Home Button -->
 <div class="text-end p-2">
     <a href="../index.php" class="home-btn">🏠 Home</a>
 </div>
