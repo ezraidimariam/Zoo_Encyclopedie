@@ -1,52 +1,48 @@
 <?php
-include '../db.php';
-include '../includes/header.php';
+include("../config/db.php");
 
-if (isset($_POST['submit'])) {
+$habitats = mysqli_query($conn, "SELECT * FROM habitats");
+
+if(isset($_POST['add'])){
     $nom = mysqli_real_escape_string($conn, $_POST['nom']);
-    $type = $_POST['type'];
-    $habitat = $_POST['habitat'];
+    $type = mysqli_real_escape_string($conn, $_POST['type']);
+    $habitat = mysqli_real_escape_string($conn, $_POST['habitat']);
 
-    $image = $_FILES['image']['name'];
-    $tmp = $_FILES['image']['tmp_name'];
+    if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
+        $image = str_replace(' ', '_', preg_replace("/[^a-zA-Z0-9_\.-]/", "", $_FILES['image']['name']));
+        $tmp_name = $_FILES['image']['tmp_name'];
+        move_uploaded_file($tmp_name, "../uploads/".$image);
 
-    move_uploaded_file($tmp, "../assets/img/" . $image);
+        mysqli_query($conn, "INSERT INTO animals (Nom, Type_alimentaire, Image, IdHab) 
+            VALUES ('$nom','$type','$image','$habitat')");
 
-    $sql = "INSERT INTO animals (NomAnimal, Type_alimentaire, Image, IdHab)
-            VALUES ('$nom', '$type', '$image', '$habitat')";
-    mysqli_query($conn, $sql);
-
-    echo "<p style='color:green'>✔ Animal ajouté avec succès !</p>";
+        header("Location: list.php");
+        exit();
+    }
 }
 ?>
 
-<h2>Ajouter un Animal</h2>
-
-<form method="post" enctype="multipart/form-data">
-    <label>Nom :</label>
-    <input type="text" name="nom" required><br><br>
-
-    <label>Type alimentaire :</label>
-    <select name="type" required>
-        <option value="Carnivore">Carnivore</option>
-        <option value="Herbivore">Herbivore</option>
-        <option value="Omnivore">Omnivore</option>
-    </select><br><br>
-
-    <label>Habitat :</label>
-    <select name="habitat">
-        <?php
-        $res = mysqli_query($conn, "SELECT * FROM habitats");
-        while ($h = mysqli_fetch_assoc($res)) {
-            echo "<option value='" . $h['IdHab'] . "'>" . $h['NomHab'] . "</option>";
-        }
-        ?>
-    </select><br><br>
-
-    <label>Image :</label>
-    <input type="file" name="image" required><br><br>
-
-    <button type="submit" name="submit">Ajouter</button>
-</form>
-
-<?php include '../includes/footer.php'; ?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container mt-5">
+    <div class="card p-4">
+        <h2 class="mb-3">Ajouter un Animal</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="nom" placeholder="Nom" class="form-control mb-2" required>
+            <select name="type" class="form-select mb-2" required>
+                <option value="">--Type Alimentaire--</option>
+                <option value="Carnivore">Carnivore</option>
+                <option value="Herbivore">Herbivore</option>
+                <option value="Omnivore">Omnivore</option>
+            </select>
+            <select name="habitat" class="form-select mb-2" required>
+                <option value="">--Choisir Habitat--</option>
+                <?php while($h = mysqli_fetch_assoc($habitats)){ ?>
+                    <option value="<?= $h['IdHab']; ?>"><?= $h['NomHab']; ?></option>
+                <?php } ?>
+            </select>
+            <input type="file" name="image" class="form-control mb-3" required>
+            <button name="add" class="btn btn-primary w-100">Ajouter</button>
+            <a href="list.php" class="btn btn-secondary w-100 mt-2">Retour à la liste</a>
+        </form>
+    </div>
+</div>

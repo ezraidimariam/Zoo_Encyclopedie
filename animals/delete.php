@@ -1,11 +1,18 @@
 <?php
-include '../db.php';
+include("../config/db.php");
 
-$id = $_GET['id'];
+$id = $_GET['id'] ?? '';
+if($id){
+    // Optionally delete image file
+    $res = mysqli_query($conn, "SELECT Image FROM animals WHERE ID='$id'");
+    $animal = mysqli_fetch_assoc($res);
+    if($animal && file_exists("../uploads/".$animal['Image'])){
+        unlink("../uploads/".$animal['Image']);
+    }
 
-$sql = "DELETE FROM animals WHERE IdAnimal = $id";
-mysqli_query($conn, $sql);
+    // Delete from DB
+    mysqli_query($conn, "DELETE FROM animals WHERE ID='$id'");
+}
 
-header("Location: /index.php");
+header("Location: list.php");
 exit();
-?>
